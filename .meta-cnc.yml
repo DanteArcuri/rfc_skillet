@@ -1,1 +1,672 @@
 
+# skillet preamble information used by panhandler
+# ---------------------------------------------------------------------
+# unique snippet name
+name: Rfc2544Test
+# label used for menu selection
+label: rfc_2544_skillet
+description: This skillet configures a firewall to run the rfc2544 test on it
+
+# type of device configuration
+# common types are panorama, panos, and template
+# https://github.com/PaloAltoNetworks/panhandler/blob/develop/docs/metadata_configuration.rst
+type: panos
+# preload static or default-based templates
+extends:
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  collection:
+    - RFC2544
+
+# ---------------------------------------------------------------------
+# end of preamble section
+
+# variables section
+# ---------------------------------------------------------------------
+# variables used in the configuration templates
+# type_hint defines the form field used by panhandler
+# type_hints can be text, ip_address, or dropdown
+variables:
+  - name: hostname
+    description: Firewall hostname
+    default: myFirewall
+    type_hint: text
+  - name: choices
+    description: sample dropdown list
+    default: choices
+    type_hint: dropdown
+    dd_list:
+      - key: option1
+        value: option1
+      - key: option2
+        value: option2
+# ---------------------------------------------------------------------
+# end of variables section
+
+# snippets section
+# ---------------------------------------------------------------------
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
+# NOTE: The following snippets are auto-generated and ordered automatically.
+# Changing the content of the snippet may be necessary, but do NOT change the order
+
+# There is a variable called snippets that we can use to auto-generate this section for us
+snippets:
+
+  - name: entry-86401
+    xpath: /config/shared/certificate
+    element: |-
+        <entry name="PAN-Decrypt-CA">
+                <subject-hash>b1d14dfc</subject-hash>
+                <issuer-hash>b1d14dfc</issuer-hash>
+                <not-valid-before>Oct 13 19:22:57 2019 GMT</not-valid-before>
+                <issuer>/CN=PAN-Decrypt-CA</issuer>
+                <not-valid-after>Nov 21 19:22:57 2023 GMT</not-valid-after>
+                <common-name>PAN-Decrypt-CA</common-name>
+                <expiry-epoch>1700594577</expiry-epoch>
+                <ca>yes</ca>
+                <subject>/CN=PAN-Decrypt-CA</subject>
+                <public-key>-----BEGIN CERTIFICATE-----
+        MIIC0jCCAbqgAwIBAgIJAIK1X/aKBHhtMA0GCSqGSIb3DQEBDAUAMBkxFzAVBgNV
+        BAMTDlBBTi1EZWNyeXB0LUNBMB4XDTE5MTAxMzE5MjI1N1oXDTIzMTEyMTE5MjI1
+        N1owGTEXMBUGA1UEAxMOUEFOLURlY3J5cHQtQ0EwggEiMA0GCSqGSIb3DQEBAQUA
+        A4IBDwAwggEKAoIBAQDHU6OnZ/HK7lch8vuCY1WTRvpIh1QiK+I8a4V/dTczqjPg
+        bmv5qhFXhqxj54bGVlP8d+l7CjAxqqH8S33/bkojSBDdDTI1Mw0wzE/nO5hcql6y
+        NNrVhgqH7sjz9jdofIigZ9du/Fbh7tSmBqAIKQ5BiKaHQg9Hj5sn3IsZB5UBGcfQ
+        WDWy6OqUwzsTihFLjZ2c3F5WgrXzQ0YJrUOYV7EG5AjsWbPvjoZdeOI9A+RGv30B
+        PcsokX+lrMi7YhSHQMj8pV7bnLgdzJraV29Fw19vf34+pFLXyLCncHznKKCZvd41
+        Vj7l95UXFWE9vSCHC/1Z/uvy/SsY4jaAN+YmV2rDAgMBAAGjHTAbMAwGA1UdEwQF
+        MAMBAf8wCwYDVR0PBAQDAgIEMA0GCSqGSIb3DQEBDAUAA4IBAQClKAx99tT9LL96
+        joKf6eFoKW8vIKAvTKfTaGH3FrVWic7zSg5Iq0o6b7WQTwrgFBM1Bz+33s479xG4
+        r9kwTXgANFm9V9dmth1xTM4+gfpsinT1lFHHrn+4BHQG2j5sd9OZCzl/3mcKq3rN
+        xQL5c/28eAORXq46J8dCWnIcv/AfIQc8IS5yNW4yW3CRnfNW3MKeD5pJ7W6F4wyR
+        YyK/78msbNwJv4UZmQYv1GKvHSK0Fl2owCS4jioFlKmk/as/QTCCd/6c/pucVHQa
+        WoAYemiUOw44C/8YougNQf4lhX70uulyqn6xeivm1KCBUoApvfoyT1bhtUYeSAtZ
+        7rMp4sLP
+        -----END CERTIFICATE-----
+        </public-key>
+                <algorithm>RSA</algorithm>
+                <private-key>-AQ==gSyqRBNkiH5G092r7rS6h5K2JJM=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</private-key>
+              </entry>
+
+  - name: entry-16931
+    xpath: /config/shared/certificate
+    element: |-
+        <entry name="PAN-Decrypt-IC">
+                <subject-hash>2e84a5bd</subject-hash>
+                <issuer-hash>b1d14dfc</issuer-hash>
+                <not-valid-before>Oct 13 19:23:19 2019 GMT</not-valid-before>
+                <issuer>/CN=PAN-Decrypt-CA</issuer>
+                <not-valid-after>Nov 21 19:23:19 2023 GMT</not-valid-after>
+                <common-name>PAN-Decrypt-IC</common-name>
+                <expiry-epoch>1700594599</expiry-epoch>
+                <ca>yes</ca>
+                <subject>/CN=PAN-Decrypt-IC</subject>
+                <public-key>-----BEGIN CERTIFICATE-----
+        MIICzjCCAbagAwIBAgIFAIeBPe0wDQYJKoZIhvcNAQEMBQAwGTEXMBUGA1UEAxMO
+        UEFOLURlY3J5cHQtQ0EwHhcNMTkxMDEzMTkyMzE5WhcNMjMxMTIxMTkyMzE5WjAZ
+        MRcwFQYDVQQDEw5QQU4tRGVjcnlwdC1JQzCCASIwDQYJKoZIhvcNAQEBBQADggEP
+        ADCCAQoCggEBANcG9AKaNZzkhLW/44ux+iiUF+viecTLHMnkY7KFYf/ujps2eUrz
+        vzYpEiiBJp2lMaLJcLgVYgD+o1ePwc5uAN4aP8ZoExSsLqMErx6GCHVWQGUWJ/B3
+        fMRqtJGNgz1TrKoPEkOnzOvxvYlKGI9LRSu/uEFXxN2Z/Md10CCkrd9ylhBU6vn0
+        4xHd+cUrezGYRGP7bX8h4Ulh4gWziW1FPX3qCOdpiUEST8Iodh27kPDPJKZomBDO
+        UxB+/J2MtqVSF+BMEB7FCRYJP0WJmwGJk/9e8sBgOIbMaxw71lVuZHO36qekS6Ew
+        qTSxNy2mIXmmPOwjUPBsEeUGKODJfEIGlcECAwEAAaMdMBswDAYDVR0TBAUwAwEB
+        /zALBgNVHQ8EBAMCAgQwDQYJKoZIhvcNAQEMBQADggEBAG/MmJ9kzhQqt2sCN5ON
+        yXuXjjMTjPyd6Ld4CKLeqepcGHTseQjlUYne0pzL81imi+z94Nzi//ZN31hVdUah
+        6MEV+ieb6YGXiIlZmpAnaHRv8g76OMfFueI8xuDHfsa8xjYlqvil0aDRtOUd6q0d
+        F8q2SWT/hhyAhoZcEwk2baeXnGGSEh8q6ksc+11zrIlmRP3bcj7pE4HZ2m40ut2U
+        Cns6m5yKBKcTB9Cz2O0YNaWLEQpfjsg3nuGYfMhgwGTKeXGK2sSqkUm8IdlfyFUg
+        iArBenFYPzH/vnSnBGN99PD1ko4zGzkDQ2L64Q3nylKPJrwcSY9vUg1WQOybRHIr
+        xho=
+        -----END CERTIFICATE-----
+        </public-key>
+                <algorithm>RSA</algorithm>
+                <private-key>-AQ==W+fygVtza1xvFM6feERgjqTS/4U=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</private-key>
+              </entry>
+
+  - name: entry-561585
+    xpath: /config/shared/certificate
+    element: |-
+        <entry name="PAN-Decrypt-ECDSA-CA">
+                <subject-hash>b39f6bbb</subject-hash>
+                <issuer-hash>b39f6bbb</issuer-hash>
+                <not-valid-before>Oct 13 19:23:44 2019 GMT</not-valid-before>
+                <issuer>/CN=PAN-Decrypt-ECDSA-CA</issuer>
+                <not-valid-after>Nov 21 19:23:44 2023 GMT</not-valid-after>
+                <common-name>PAN-Decrypt-ECDSA-CA</common-name>
+                <expiry-epoch>1700594624</expiry-epoch>
+                <ca>yes</ca>
+                <subject>/CN=PAN-Decrypt-ECDSA-CA</subject>
+                <public-key>-----BEGIN CERTIFICATE-----
+        MIIBjzCCARWgAwIBAgIJAONuwlDg//ezMAoGCCqGSM49BAMDMB8xHTAbBgNVBAMT
+        FFBBTi1EZWNyeXB0LUVDRFNBLUNBMB4XDTE5MTAxMzE5MjM0NFoXDTIzMTEyMTE5
+        MjM0NFowHzEdMBsGA1UEAxMUUEFOLURlY3J5cHQtRUNEU0EtQ0EwdjAQBgcqhkjO
+        PQIBBgUrgQQAIgNiAATefsK4QKu4D9sgbgbQlaBBl7Z3Weqz5rO1Vt/5iq8JQXLf
+        UjwKFUqa+muROJBz87P4jpERWmxHTqtFcDVk81bioRNPoR0hW+1xvoybpmyaAvw7
+        V5pdSTW8O+Z90n+vpsqjHTAbMAwGA1UdEwQFMAMBAf8wCwYDVR0PBAQDAgIEMAoG
+        CCqGSM49BAMDA2gAMGUCMEAGxYkccxSrAV2HCSJSCKnw7XdjYD4Mpt/FmgswNbIq
+        EOl16kxTHRxCN7DaRF8BYwIxAOkLEz+FMrY2BC7j6+U1mZxlLgk3P32vrQZXqjVI
+        QuISQ3CSYVXMmE3akPqQR+ymZw==
+        -----END CERTIFICATE-----
+        </public-key>
+                <algorithm>EC</algorithm>
+                <private-key>-AQ==v0VEl+tygj9TfGKzIERfl4GtAoQ=XvXcFOkILAZdXDe37gMx2bTS/Hb6HAEBFQ++jPBphcfVU9lQ674HTM5MiB6JShJiPd4OCb71DSir1X0XZvAQ6f6ryYQ/zA791ya02Q/llqQn8wyvHo/xbxEgXl5CWh27b9+X9jI/7w3SAWJQlIWX8PADyaQXzSHHlbDsA0nQnodoSy72MQs1mPjkbwBvON7Fx9VF5Ct7B6yDHShLTjlydl1dfLOQOl3NXqjse8Lb8H5wgbGhhlunC7EwKoOqf+Uhiyh2aw6W4yj49dvEB8h3lkJsWyydIKAW5zyiZA9Y/R57CSEVrUdl1OwD92M1T3FKMx78/KJhf31RLSvBw+pEF8jUgBlP78jfmlVZkJB6F2v+0I5hVQMcvaVrojCI5IPCxiEioZB5XAiM2+20HX02MA==</private-key>
+              </entry>
+
+  - name: entry-936621
+    xpath: /config/shared/certificate
+    element: |-
+        <entry name="PAN-Decrypt-ECDSA-IC">
+                <subject-hash>c06369e6</subject-hash>
+                <issuer-hash>b39f6bbb</issuer-hash>
+                <not-valid-before>Oct 13 19:24:09 2019 GMT</not-valid-before>
+                <issuer>/CN=PAN-Decrypt-ECDSA-CA</issuer>
+                <not-valid-after>Nov 21 19:24:09 2023 GMT</not-valid-after>
+                <common-name>PAN-Decrypt-ECDSA-IC</common-name>
+                <expiry-epoch>1700594649</expiry-epoch>
+                <ca>yes</ca>
+                <subject>/CN=PAN-Decrypt-ECDSA-IC</subject>
+                <public-key>-----BEGIN CERTIFICATE-----
+        MIIBjDCCARGgAwIBAgIFAIeBPe4wCgYIKoZIzj0EAwMwHzEdMBsGA1UEAxMUUEFO
+        LURlY3J5cHQtRUNEU0EtQ0EwHhcNMTkxMDEzMTkyNDA5WhcNMjMxMTIxMTkyNDA5
+        WjAfMR0wGwYDVQQDExRQQU4tRGVjcnlwdC1FQ0RTQS1JQzB2MBAGByqGSM49AgEG
+        BSuBBAAiA2IABKhQ5ISZrGathXoXPH7uMXlFFnwyKCez1hJx//cdaMtzcgMwLECI
+        2DIAfcyNzR0IlLvh2lcLPURBHnE1sEnpngReQZpm/DNvrj7J9hCa4j03Tm+NYETB
+        7P0WaCO6XjBUHaMdMBswDAYDVR0TBAUwAwEB/zALBgNVHQ8EBAMCAgQwCgYIKoZI
+        zj0EAwMDaQAwZgIxAMazHUXX2IfpVCbzDxDfWqwWmtkyKbRnGwaBLY/wLU1Xv89V
+        UXzku6EHuoDHPdwyaAIxAJcy4WhqptlwrgeUdu87SeR0u+K1OWJCSpT7yUCP5Lo7
+        dkwdBw+7q51oErlLQk/gUg==
+        -----END CERTIFICATE-----
+        </public-key>
+                <algorithm>EC</algorithm>
+                <private-key>-AQ==ONWZuzqguA8rs41B/B8MvferxKM=XvXcFOkILAZdXDe37gMx2bTS/Hb6HAEBFQ++jPBphcdfh+nE8XtjRbWnCLGuWOVEurh/kppTRgP9fflmHXrWOqwCc8m85qYeD5XknZDrGoztRojpMg/k2Bml44lh3vk0ldO84+cJTui9oyZ0MNIQUhJ1AV4VNuUhSpgVp1xryZfGeuWBjK6W8UR89TZVgy0uDpYW7r0uH2MeaqIFcCNWRMdnmiaGqDL7zp7ICO2+45YXhOsmT2AJZET5VQn8nOdH1gxjuGn5wY3VGLE9k8E1HmelFZ79isBWuwx2wjrvmKQSRJopSYPyKVhSQYQ/ZCcGCligdaz9xkznuu8HHrInVinie+1ZhhiIvIvcDxBWbZ8QU49RSlpmqv7c7TVX1whKoTMBm1bnuURrcm4PbZYNDQ==</private-key>
+              </entry>
+
+  - name: entry-104120
+    xpath: /config/shared/certificate
+    element: |-
+        <entry name="Major-Decrypt-ECDSA-CA">
+                <subject-hash>d533bfdc</subject-hash>
+                <issuer-hash>b39f6bbb</issuer-hash>
+                <not-valid-before>Jan 27 21:37:28 2020 GMT</not-valid-before>
+                <issuer>/CN=PAN-Decrypt-ECDSA-CA</issuer>
+                <not-valid-after>Jan 26 21:37:28 2021 GMT</not-valid-after>
+                <common-name>10.48.64.154</common-name>
+                <expiry-epoch>1611697048</expiry-epoch>
+                <ca>yes</ca>
+                <subject>/CN=10.48.64.154</subject>
+                <public-key>-----BEGIN CERTIFICATE-----
+        MIIBYzCB66ADAgECAgQKpQrgMAoGCCqGSM49BAMDMB8xHTAbBgNVBAMTFFBBTi1E
+        ZWNyeXB0LUVDRFNBLUNBMB4XDTIwMDEyNzIxMzcyOFoXDTIxMDEyNjIxMzcyOFow
+        FzEVMBMGA1UEAxMMMTAuNDguNjQuMTU0MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcD
+        QgAEkO3EnJZZgZiwKsDECNp2F347sChMP+TjpNCAJeqZtABjiNuDH5yh6Zj7Saez
+        Yb7e7ZiKM4yo4RXjyZgwnOMFcqMdMBswDAYDVR0TBAUwAwEB/zALBgNVHQ8EBAMC
+        AgQwCgYIKoZIzj0EAwMDZwAwZAIwMgzYYCZuE42UC0c9vtlbUgr13KqEB5feX7d7
+        i259jhyoHXo/AgPEwFmk44eQavKCAjBfUlTdDZsUAC0ocrcQaDPBmCBJ8VBMpn61
+        F3EqGwUOELZm4G+p6WJviPeUAydpcgY=
+        -----END CERTIFICATE-----
+        </public-key>
+                <algorithm>EC</algorithm>
+                <private-key>-AQ==XSa6cDLgFm8lQKTuDXnZPWxZ7yU=XvXcFOkILAZdXDe37gMx2bTS/Hb6HAEBFQ++jPBphcdyGbQCaJNOPGbkEAEENzDJvpdWnOZ/XRFN2Yh8jyu9X32ABjQ9pxytBpcuFYEnaTG6Htg6g3QAAAy7cdSSJFIUn6XrzaH4ycl96voNE4qXtESMTpjRyU7KiwZi8BEJ0VXLgvYIrzgkdcrb8tCAfkrn/5QNsAmvvgzEf2ZCLwJYlCAdmH1xxL/1ysRSZvQBTDLegN4MHU6F2SHMHZ9cxtuwbsBalbxavnrAvNdRp8RI55dkvu1DQRqX8RxBbHphYZa6ls9MWLeYObykuxSFVhWS</private-key>
+              </entry>
+
+  - name: entry-86401
+    xpath: /config/shared/certificate
+    element: |-
+        <entry name="PAN-Decrypt-CA">
+                <subject-hash>b1d14dfc</subject-hash>
+                <issuer-hash>b1d14dfc</issuer-hash>
+                <not-valid-before>Oct 13 19:22:57 2019 GMT</not-valid-before>
+                <issuer>/CN=PAN-Decrypt-CA</issuer>
+                <not-valid-after>Nov 21 19:22:57 2023 GMT</not-valid-after>
+                <common-name>PAN-Decrypt-CA</common-name>
+                <expiry-epoch>1700594577</expiry-epoch>
+                <ca>yes</ca>
+                <subject>/CN=PAN-Decrypt-CA</subject>
+                <public-key>-----BEGIN CERTIFICATE-----
+        MIIC0jCCAbqgAwIBAgIJAIK1X/aKBHhtMA0GCSqGSIb3DQEBDAUAMBkxFzAVBgNV
+        BAMTDlBBTi1EZWNyeXB0LUNBMB4XDTE5MTAxMzE5MjI1N1oXDTIzMTEyMTE5MjI1
+        N1owGTEXMBUGA1UEAxMOUEFOLURlY3J5cHQtQ0EwggEiMA0GCSqGSIb3DQEBAQUA
+        A4IBDwAwggEKAoIBAQDHU6OnZ/HK7lch8vuCY1WTRvpIh1QiK+I8a4V/dTczqjPg
+        bmv5qhFXhqxj54bGVlP8d+l7CjAxqqH8S33/bkojSBDdDTI1Mw0wzE/nO5hcql6y
+        NNrVhgqH7sjz9jdofIigZ9du/Fbh7tSmBqAIKQ5BiKaHQg9Hj5sn3IsZB5UBGcfQ
+        WDWy6OqUwzsTihFLjZ2c3F5WgrXzQ0YJrUOYV7EG5AjsWbPvjoZdeOI9A+RGv30B
+        PcsokX+lrMi7YhSHQMj8pV7bnLgdzJraV29Fw19vf34+pFLXyLCncHznKKCZvd41
+        Vj7l95UXFWE9vSCHC/1Z/uvy/SsY4jaAN+YmV2rDAgMBAAGjHTAbMAwGA1UdEwQF
+        MAMBAf8wCwYDVR0PBAQDAgIEMA0GCSqGSIb3DQEBDAUAA4IBAQClKAx99tT9LL96
+        joKf6eFoKW8vIKAvTKfTaGH3FrVWic7zSg5Iq0o6b7WQTwrgFBM1Bz+33s479xG4
+        r9kwTXgANFm9V9dmth1xTM4+gfpsinT1lFHHrn+4BHQG2j5sd9OZCzl/3mcKq3rN
+        xQL5c/28eAORXq46J8dCWnIcv/AfIQc8IS5yNW4yW3CRnfNW3MKeD5pJ7W6F4wyR
+        YyK/78msbNwJv4UZmQYv1GKvHSK0Fl2owCS4jioFlKmk/as/QTCCd/6c/pucVHQa
+        WoAYemiUOw44C/8YougNQf4lhX70uulyqn6xeivm1KCBUoApvfoyT1bhtUYeSAtZ
+        7rMp4sLP
+        -----END CERTIFICATE-----
+        </public-key>
+                <algorithm>RSA</algorithm>
+                <private-key>-AQ==gSyqRBNkiH5G092r7rS6h5K2JJM=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</private-key>
+              </entry>
+
+  - name: entry-16931
+    xpath: /config/shared/certificate
+    element: |-
+        <entry name="PAN-Decrypt-IC">
+                <subject-hash>2e84a5bd</subject-hash>
+                <issuer-hash>b1d14dfc</issuer-hash>
+                <not-valid-before>Oct 13 19:23:19 2019 GMT</not-valid-before>
+                <issuer>/CN=PAN-Decrypt-CA</issuer>
+                <not-valid-after>Nov 21 19:23:19 2023 GMT</not-valid-after>
+                <common-name>PAN-Decrypt-IC</common-name>
+                <expiry-epoch>1700594599</expiry-epoch>
+                <ca>yes</ca>
+                <subject>/CN=PAN-Decrypt-IC</subject>
+                <public-key>-----BEGIN CERTIFICATE-----
+        MIICzjCCAbagAwIBAgIFAIeBPe0wDQYJKoZIhvcNAQEMBQAwGTEXMBUGA1UEAxMO
+        UEFOLURlY3J5cHQtQ0EwHhcNMTkxMDEzMTkyMzE5WhcNMjMxMTIxMTkyMzE5WjAZ
+        MRcwFQYDVQQDEw5QQU4tRGVjcnlwdC1JQzCCASIwDQYJKoZIhvcNAQEBBQADggEP
+        ADCCAQoCggEBANcG9AKaNZzkhLW/44ux+iiUF+viecTLHMnkY7KFYf/ujps2eUrz
+        vzYpEiiBJp2lMaLJcLgVYgD+o1ePwc5uAN4aP8ZoExSsLqMErx6GCHVWQGUWJ/B3
+        fMRqtJGNgz1TrKoPEkOnzOvxvYlKGI9LRSu/uEFXxN2Z/Md10CCkrd9ylhBU6vn0
+        4xHd+cUrezGYRGP7bX8h4Ulh4gWziW1FPX3qCOdpiUEST8Iodh27kPDPJKZomBDO
+        UxB+/J2MtqVSF+BMEB7FCRYJP0WJmwGJk/9e8sBgOIbMaxw71lVuZHO36qekS6Ew
+        qTSxNy2mIXmmPOwjUPBsEeUGKODJfEIGlcECAwEAAaMdMBswDAYDVR0TBAUwAwEB
+        /zALBgNVHQ8EBAMCAgQwDQYJKoZIhvcNAQEMBQADggEBAG/MmJ9kzhQqt2sCN5ON
+        yXuXjjMTjPyd6Ld4CKLeqepcGHTseQjlUYne0pzL81imi+z94Nzi//ZN31hVdUah
+        6MEV+ieb6YGXiIlZmpAnaHRv8g76OMfFueI8xuDHfsa8xjYlqvil0aDRtOUd6q0d
+        F8q2SWT/hhyAhoZcEwk2baeXnGGSEh8q6ksc+11zrIlmRP3bcj7pE4HZ2m40ut2U
+        Cns6m5yKBKcTB9Cz2O0YNaWLEQpfjsg3nuGYfMhgwGTKeXGK2sSqkUm8IdlfyFUg
+        iArBenFYPzH/vnSnBGN99PD1ko4zGzkDQ2L64Q3nylKPJrwcSY9vUg1WQOybRHIr
+        xho=
+        -----END CERTIFICATE-----
+        </public-key>
+                <algorithm>RSA</algorithm>
+                <private-key>-AQ==W+fygVtza1xvFM6feERgjqTS/4U=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</private-key>
+              </entry>
+
+  - name: entry-561585
+    xpath: /config/shared/certificate
+    element: |-
+        <entry name="PAN-Decrypt-ECDSA-CA">
+                <subject-hash>b39f6bbb</subject-hash>
+                <issuer-hash>b39f6bbb</issuer-hash>
+                <not-valid-before>Oct 13 19:23:44 2019 GMT</not-valid-before>
+                <issuer>/CN=PAN-Decrypt-ECDSA-CA</issuer>
+                <not-valid-after>Nov 21 19:23:44 2023 GMT</not-valid-after>
+                <common-name>PAN-Decrypt-ECDSA-CA</common-name>
+                <expiry-epoch>1700594624</expiry-epoch>
+                <ca>yes</ca>
+                <subject>/CN=PAN-Decrypt-ECDSA-CA</subject>
+                <public-key>-----BEGIN CERTIFICATE-----
+        MIIBjzCCARWgAwIBAgIJAONuwlDg//ezMAoGCCqGSM49BAMDMB8xHTAbBgNVBAMT
+        FFBBTi1EZWNyeXB0LUVDRFNBLUNBMB4XDTE5MTAxMzE5MjM0NFoXDTIzMTEyMTE5
+        MjM0NFowHzEdMBsGA1UEAxMUUEFOLURlY3J5cHQtRUNEU0EtQ0EwdjAQBgcqhkjO
+        PQIBBgUrgQQAIgNiAATefsK4QKu4D9sgbgbQlaBBl7Z3Weqz5rO1Vt/5iq8JQXLf
+        UjwKFUqa+muROJBz87P4jpERWmxHTqtFcDVk81bioRNPoR0hW+1xvoybpmyaAvw7
+        V5pdSTW8O+Z90n+vpsqjHTAbMAwGA1UdEwQFMAMBAf8wCwYDVR0PBAQDAgIEMAoG
+        CCqGSM49BAMDA2gAMGUCMEAGxYkccxSrAV2HCSJSCKnw7XdjYD4Mpt/FmgswNbIq
+        EOl16kxTHRxCN7DaRF8BYwIxAOkLEz+FMrY2BC7j6+U1mZxlLgk3P32vrQZXqjVI
+        QuISQ3CSYVXMmE3akPqQR+ymZw==
+        -----END CERTIFICATE-----
+        </public-key>
+                <algorithm>EC</algorithm>
+                <private-key>-AQ==v0VEl+tygj9TfGKzIERfl4GtAoQ=XvXcFOkILAZdXDe37gMx2bTS/Hb6HAEBFQ++jPBphcfVU9lQ674HTM5MiB6JShJiPd4OCb71DSir1X0XZvAQ6f6ryYQ/zA791ya02Q/llqQn8wyvHo/xbxEgXl5CWh27b9+X9jI/7w3SAWJQlIWX8PADyaQXzSHHlbDsA0nQnodoSy72MQs1mPjkbwBvON7Fx9VF5Ct7B6yDHShLTjlydl1dfLOQOl3NXqjse8Lb8H5wgbGhhlunC7EwKoOqf+Uhiyh2aw6W4yj49dvEB8h3lkJsWyydIKAW5zyiZA9Y/R57CSEVrUdl1OwD92M1T3FKMx78/KJhf31RLSvBw+pEF8jUgBlP78jfmlVZkJB6F2v+0I5hVQMcvaVrojCI5IPCxiEioZB5XAiM2+20HX02MA==</private-key>
+              </entry>
+
+  - name: entry-936621
+    xpath: /config/shared/certificate
+    element: |-
+        <entry name="PAN-Decrypt-ECDSA-IC">
+                <subject-hash>c06369e6</subject-hash>
+                <issuer-hash>b39f6bbb</issuer-hash>
+                <not-valid-before>Oct 13 19:24:09 2019 GMT</not-valid-before>
+                <issuer>/CN=PAN-Decrypt-ECDSA-CA</issuer>
+                <not-valid-after>Nov 21 19:24:09 2023 GMT</not-valid-after>
+                <common-name>PAN-Decrypt-ECDSA-IC</common-name>
+                <expiry-epoch>1700594649</expiry-epoch>
+                <ca>yes</ca>
+                <subject>/CN=PAN-Decrypt-ECDSA-IC</subject>
+                <public-key>-----BEGIN CERTIFICATE-----
+        MIIBjDCCARGgAwIBAgIFAIeBPe4wCgYIKoZIzj0EAwMwHzEdMBsGA1UEAxMUUEFO
+        LURlY3J5cHQtRUNEU0EtQ0EwHhcNMTkxMDEzMTkyNDA5WhcNMjMxMTIxMTkyNDA5
+        WjAfMR0wGwYDVQQDExRQQU4tRGVjcnlwdC1FQ0RTQS1JQzB2MBAGByqGSM49AgEG
+        BSuBBAAiA2IABKhQ5ISZrGathXoXPH7uMXlFFnwyKCez1hJx//cdaMtzcgMwLECI
+        2DIAfcyNzR0IlLvh2lcLPURBHnE1sEnpngReQZpm/DNvrj7J9hCa4j03Tm+NYETB
+        7P0WaCO6XjBUHaMdMBswDAYDVR0TBAUwAwEB/zALBgNVHQ8EBAMCAgQwCgYIKoZI
+        zj0EAwMDaQAwZgIxAMazHUXX2IfpVCbzDxDfWqwWmtkyKbRnGwaBLY/wLU1Xv89V
+        UXzku6EHuoDHPdwyaAIxAJcy4WhqptlwrgeUdu87SeR0u+K1OWJCSpT7yUCP5Lo7
+        dkwdBw+7q51oErlLQk/gUg==
+        -----END CERTIFICATE-----
+        </public-key>
+                <algorithm>EC</algorithm>
+                <private-key>-AQ==ONWZuzqguA8rs41B/B8MvferxKM=XvXcFOkILAZdXDe37gMx2bTS/Hb6HAEBFQ++jPBphcdfh+nE8XtjRbWnCLGuWOVEurh/kppTRgP9fflmHXrWOqwCc8m85qYeD5XknZDrGoztRojpMg/k2Bml44lh3vk0ldO84+cJTui9oyZ0MNIQUhJ1AV4VNuUhSpgVp1xryZfGeuWBjK6W8UR89TZVgy0uDpYW7r0uH2MeaqIFcCNWRMdnmiaGqDL7zp7ICO2+45YXhOsmT2AJZET5VQn8nOdH1gxjuGn5wY3VGLE9k8E1HmelFZ79isBWuwx2wjrvmKQSRJopSYPyKVhSQYQ/ZCcGCligdaz9xkznuu8HHrInVinie+1ZhhiIvIvcDxBWbZ8QU49RSlpmqv7c7TVX1whKoTMBm1bnuURrcm4PbZYNDQ==</private-key>
+              </entry>
+
+  - name: entry-104120
+    xpath: /config/shared/certificate
+    element: |-
+        <entry name="Major-Decrypt-ECDSA-CA">
+                <subject-hash>d533bfdc</subject-hash>
+                <issuer-hash>b39f6bbb</issuer-hash>
+                <not-valid-before>Jan 27 21:37:28 2020 GMT</not-valid-before>
+                <issuer>/CN=PAN-Decrypt-ECDSA-CA</issuer>
+                <not-valid-after>Jan 26 21:37:28 2021 GMT</not-valid-after>
+                <common-name>10.48.64.154</common-name>
+                <expiry-epoch>1611697048</expiry-epoch>
+                <ca>yes</ca>
+                <subject>/CN=10.48.64.154</subject>
+                <public-key>-----BEGIN CERTIFICATE-----
+        MIIBYzCB66ADAgECAgQKpQrgMAoGCCqGSM49BAMDMB8xHTAbBgNVBAMTFFBBTi1E
+        ZWNyeXB0LUVDRFNBLUNBMB4XDTIwMDEyNzIxMzcyOFoXDTIxMDEyNjIxMzcyOFow
+        FzEVMBMGA1UEAxMMMTAuNDguNjQuMTU0MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcD
+        QgAEkO3EnJZZgZiwKsDECNp2F347sChMP+TjpNCAJeqZtABjiNuDH5yh6Zj7Saez
+        Yb7e7ZiKM4yo4RXjyZgwnOMFcqMdMBswDAYDVR0TBAUwAwEB/zALBgNVHQ8EBAMC
+        AgQwCgYIKoZIzj0EAwMDZwAwZAIwMgzYYCZuE42UC0c9vtlbUgr13KqEB5feX7d7
+        i259jhyoHXo/AgPEwFmk44eQavKCAjBfUlTdDZsUAC0ocrcQaDPBmCBJ8VBMpn61
+        F3EqGwUOELZm4G+p6WJviPeUAydpcgY=
+        -----END CERTIFICATE-----
+        </public-key>
+                <algorithm>EC</algorithm>
+                <private-key>-AQ==XSa6cDLgFm8lQKTuDXnZPWxZ7yU=XvXcFOkILAZdXDe37gMx2bTS/Hb6HAEBFQ++jPBphcdyGbQCaJNOPGbkEAEENzDJvpdWnOZ/XRFN2Yh8jyu9X32ABjQ9pxytBpcuFYEnaTG6Htg6g3QAAAy7cdSSJFIUn6XrzaH4ycl96voNE4qXtESMTpjRyU7KiwZi8BEJ0VXLgvYIrzgkdcrb8tCAfkrn/5QNsAmvvgzEf2ZCLwJYlCAdmH1xxL/1ysRSZvQBTDLegN4MHU6F2SHMHZ9cxtuwbsBalbxavnrAvNdRp8RI55dkvu1DQRqX8RxBbHphYZa6ls9MWLeYObykuxSFVhWS</private-key>
+              </entry>
+
+  - name: forward-trust-certificate-467874
+    xpath: /config/shared/ssl-decrypt
+    element: |-
+        <forward-trust-certificate>
+                <ecdsa>PAN-Decrypt-ECDSA-CA</ecdsa>
+                <rsa>PAN-Decrypt-IC</rsa>
+              </forward-trust-certificate>
+
+  - name: forward-untrust-certificate-169330
+    xpath: /config/shared/ssl-decrypt
+    element: |-
+        <forward-untrust-certificate>
+                <ecdsa>PAN-Decrypt-ECDSA-CA</ecdsa>
+              </forward-untrust-certificate>
+
+  - name: primary-281548
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/deviceconfig/system/dns-setting/servers
+    element: |-
+        <primary>10.55.2.10</primary>
+
+  - name: secondary-771830
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/deviceconfig/system/dns-setting/servers
+    element: |-
+        <secondary>10.55.2.11</secondary>
+
+  - name: type-54621
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/deviceconfig/system
+    element: |-
+        <type>
+                    <static/>
+                  </type>
+
+  - name: server-verification-395375
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/deviceconfig/system
+    element: |-
+        <server-verification>no</server-verification>
+
+  - name: ntp-servers-549147
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/deviceconfig/system
+    element: |-
+        <ntp-servers>
+                    <primary-ntp-server>
+                      <ntp-server-address>10.55.2.10</ntp-server-address>
+                      <authentication-type>
+                        <none/>
+                      </authentication-type>
+                    </primary-ntp-server>
+                    <secondary-ntp-server>
+                      <ntp-server-address>10.55.2.11</ntp-server-address>
+                      <authentication-type>
+                        <none/>
+                      </authentication-type>
+                    </secondary-ntp-server>
+                  </ntp-servers>
+
+  - name: entry-553461
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/network/interface/ethernet
+    element: |-
+        <entry name="ethernet1/1">
+                      <virtual-wire/>
+                    </entry>
+
+  - name: entry-709284
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/network/interface/ethernet
+    element: |-
+        <entry name="ethernet1/2">
+                      <virtual-wire/>
+                    </entry>
+
+  - name: entry-380471
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/network/interface/ethernet
+    element: |-
+        <entry name="ethernet1/19">
+                      <virtual-wire>
+                        <lldp>
+                          <enable>no</enable>
+                        </lldp>
+                      </virtual-wire>
+                    </entry>
+
+  - name: entry-980277
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/network/interface/ethernet
+    element: |-
+        <entry name="ethernet1/20">
+                      <virtual-wire>
+                        <lldp>
+                          <enable>no</enable>
+                        </lldp>
+                      </virtual-wire>
+                    </entry>
+
+  - name: entry-781947
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/network/interface/ethernet/entry[@name="ethernet1/5"]/layer3/ip
+    element: |-
+        <entry name="184.1.1.1/24"/>
+
+  - name: entry-654383
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/network/interface/ethernet/entry[@name="ethernet1/6"]/layer3/ip
+    element: |-
+        <entry name="185.1.1.1/24"/>
+
+  - name: units-335238
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/network/interface/tunnel
+    element: |-
+        <units/>
+
+  - name: member-354969
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/import/network/interface
+    element: |-
+        <member>ethernet1/19</member>
+
+  - name: member-968331
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/import/network/interface
+    element: |-
+        <member>ethernet1/20</member>
+
+  - name: dampening-profile-27522
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/network/virtual-router/entry[@name="default"]/protocol/bgp
+    element: |-
+        <dampening-profile>
+                          <entry name="default">
+                            <cutoff>1.25</cutoff>
+                            <reuse>0.5</reuse>
+                            <max-hold-time>900</max-hold-time>
+                            <decay-half-life-reachable>300</decay-half-life-reachable>
+                            <decay-half-life-unreachable>900</decay-half-life-unreachable>
+                            <enable>yes</enable>
+                          </entry>
+                        </dampening-profile>
+
+  - name: entry-547257
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/zone
+    element: |-
+        <entry name="Trust-L3">
+                      <network>
+                        <layer3>
+                          <member>ethernet1/5</member>
+                        </layer3>
+                      </network>
+                    </entry>
+
+  - name: entry-341897
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/zone
+    element: |-
+        <entry name="Untrust-L3">
+                      <network>
+                        <layer3>
+                          <member>ethernet1/6</member>
+                        </layer3>
+                      </network>
+                    </entry>
+
+  - name: entry-651588
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/zone
+    element: |-
+        <entry name="untrust">
+                      <network>
+                        <virtual-wire>
+                          <member>ethernet1/20</member>
+                        </virtual-wire>
+                      </network>
+                    </entry>
+
+  - name: entry-241075
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/zone
+    element: |-
+        <entry name="trusted">
+                      <network>
+                        <virtual-wire>
+                          <member>ethernet1/19</member>
+                        </virtual-wire>
+                      </network>
+                    </entry>
+
+  - name: entry-944520
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/network/qos/profile
+    element: |-
+        <entry name="default"/>
+
+  - name: user-id-collector-259051
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
+    element: |-
+        <user-id-collector>
+                    <setting/>
+                  </user-id-collector>
+
+  - name: decryption-385453
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/profiles
+    element: |-
+        <decryption>
+                      <entry name="SSL-Decrypt-Profile">
+                        <ssl-protocol-settings>
+                          <min-version>tls1-2</min-version>
+                          <max-version>max</max-version>
+                          <auth-algo-md5>no</auth-algo-md5>
+                          <auth-algo-sha1>yes</auth-algo-sha1>
+                          <auth-algo-sha256>yes</auth-algo-sha256>
+                          <auth-algo-sha384>yes</auth-algo-sha384>
+                          <enc-algo-3des>no</enc-algo-3des>
+                          <enc-algo-aes-128-cbc>yes</enc-algo-aes-128-cbc>
+                          <enc-algo-aes-128-gcm>yes</enc-algo-aes-128-gcm>
+                          <enc-algo-aes-256-cbc>yes</enc-algo-aes-256-cbc>
+                          <enc-algo-aes-256-gcm>yes</enc-algo-aes-256-gcm>
+                          <enc-algo-rc4>no</enc-algo-rc4>
+                          <keyxchg-algo-dhe>yes</keyxchg-algo-dhe>
+                          <keyxchg-algo-ecdhe>yes</keyxchg-algo-ecdhe>
+                          <keyxchg-algo-rsa>yes</keyxchg-algo-rsa>
+                        </ssl-protocol-settings>
+                        <ssl-forward-proxy>
+                          <block-expired-certificate>yes</block-expired-certificate>
+                          <block-unknown-cert>yes</block-unknown-cert>
+                          <block-unsupported-cipher>yes</block-unsupported-cipher>
+                          <block-if-no-resource>yes</block-if-no-resource>
+                          <block-unsupported-version>yes</block-unsupported-version>
+                        </ssl-forward-proxy>
+                      </entry>
+                      <entry name="Metlife">
+                        <ssl-protocol-settings>
+                          <min-version>tls1-2</min-version>
+                          <max-version>tls1-2</max-version>
+                          <enc-algo-3des>no</enc-algo-3des>
+                          <enc-algo-rc4>no</enc-algo-rc4>
+                        </ssl-protocol-settings>
+                      </entry>
+                    </decryption>
+
+  - name: entry-451698
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/rulebase/security/rules
+    element: |-
+        <entry uuid="36ce0679-74eb-413e-b6b1-f84d7a3a7dcc" name="Allow-All">
+                          <source>
+                            <member>any</member>
+                          </source>
+                          <to>
+                            <member>any</member>
+                          </to>
+                          <from>
+                            <member>any</member>
+                          </from>
+                          <destination>
+                            <member>any</member>
+                          </destination>
+                          <application>
+                            <member>any</member>
+                          </application>
+                          <service>
+                            <member>any</member>
+                          </service>
+                          <action>allow</action>
+                          <source-user>
+                            <member>any</member>
+                          </source-user>
+                          <category>
+                            <member>any</member>
+                          </category>
+                          <hip-profiles>
+                            <member>any</member>
+                          </hip-profiles>
+                        </entry>
+
+  - name: decryption-214514
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/rulebase
+    element: |-
+        <decryption>
+                      <rules>
+                        <entry uuid="8bc6eada-9041-4e80-99d7-f18782d34e5a" name="SSL-Decrypt-Policy">
+                          <action>decrypt</action>
+                          <destination>
+                            <member>any</member>
+                          </destination>
+                          <from>
+                            <member>any</member>
+                          </from>
+                          <profile>Metlife</profile>
+                          <service>
+                            <member>any</member>
+                          </service>
+                          <source>
+                            <member>any</member>
+                          </source>
+                          <source-user>
+                            <member>any</member>
+                          </source-user>
+                          <to>
+                            <member>any</member>
+                          </to>
+                          <type>
+                            <ssl-forward-proxy/>
+                          </type>
+                          <category>
+                            <member>any</member>
+                          </category>
+                          <disabled>no</disabled>
+                        </entry>
+                      </rules>
+                    </decryption>
+
+
+# ---------------------------------------------------------------------
+# end of snippets section
