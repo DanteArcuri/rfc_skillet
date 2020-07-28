@@ -124,19 +124,19 @@ snippets:
   - name: member-246076
     xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/import/network/interface
     element: |-
-        <member>ethernet1/5</member>
+        <member>{{ ingress }}</member>
 
   - name: member-370574
     xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/import/network/interface
     element: |-
-        <member>ethernet1/6</member>
+        <member>{{ egress }}</member>
 
   - name: member-331136
     xpath: /config/devices/entry[@name="localhost.localdomain"]/network/virtual-router/entry[@name="default"]/interface
     element: |-
-        <member>ethernet1/5</member>
+        <member>{{ ingress }}</member>
 
   - name: member-628582
     xpath: /config/devices/entry[@name="localhost.localdomain"]/network/virtual-router/entry[@name="default"]/interface
     element: |-
-        <member>ethernet1/6</member>
+        <member>{{ egress }}</member>
